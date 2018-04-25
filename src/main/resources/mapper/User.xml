@@ -1,28 +1,28 @@
 <!DOCTYPE mapper
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ihome.dao.UserDao" >
+<mapper namespace="com.swagger.dao.UserDao" >
 
 	<!-- 状态查询用户-->
 	<select id="findUserH"  resultType="map">
 		select *from user_cobra where status=1
 	</select>
 	<!-- 通过主键查询用户-->
-	<select id="findUserByIdH"  resultType="com.ihome.entirty.User" parameterType="map">
+	<select id="findUserByIdH" resultType="com.swagger.entirty.User" parameterType="map">
 		select *from user_cobra where id=#{id} and status=1
 	</select>
-	<select id="findUser"  resultType="com.ihome.entirty.User">
+	<select id="findUser"  resultType="com.swagger.entirty.User">
 		select *from user_cobra where status=1
 	</select>
-	<select id="findUserByPhone"  resultType="com.ihome.entirty.User" parameterType="string">
+	<select id="findUserByPhone" resultType="com.swagger.entirty.User" parameterType="string">
 		select *from user_cobra where user_phone=#{userPhone} and status=1
 	</select>
-	<select id="findUserById"  resultType="com.ihome.entirty.User" parameterType="int">
+	<select id="findUserById" resultType="com.swagger.entirty.User" parameterType="int">
 		select *from user_cobra where user_phone=#{id} and status=1
 	</select>
 
 	<!-- 添加用户-->
-	<insert id="insertUser" parameterType="com.ihome.entirty.User">
+	<insert id="insertUser" parameterType="com.swagger.entirty.User">
 		insert into user_cobra(username,realname,user_phone,gender,birthday,address,password)
 		values(#{username},#{realname},#{userPhone},#{gender},#{birthday},#{address},#{password})
 	</insert>
@@ -33,7 +33,7 @@
 	</delete>
 
 	<!-- 跟新用户-->
-	<update id="updateUser" parameterType="com.ihome.entirty.User">
+	<update id="updateUser" parameterType="com.swagger.entirty.User">
 		update user_cobra
 		<trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
 			<if test="realname != null and realname != ''">

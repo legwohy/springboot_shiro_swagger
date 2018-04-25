@@ -16,13 +16,14 @@ spring:
     encoding: UTF-8
     content-type: text/html
     mode: HTML5
-    #druid数据源
+
+  #druid数据源
   datasource:
     name: druidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://116.62.146.185:3306/test_Blue
-    username: root
-    password: huoxinjihuatest
+    url: jdbc:mysql://192.168.6.163:3306/shiro?useUnicode=true&CharacterEncoding=UTF-8
+    username: cobra
+    password: Z&Tc1234567890
    
 
     type: com.alibaba.druid.pool.DruidDataSource

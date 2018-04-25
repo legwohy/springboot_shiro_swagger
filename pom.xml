@@ -63,7 +63,7 @@
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
 
-		<!-- 使用mapper模板 使用MyMapper-->
+		<!-- 通用mapper模板 简单表的增删改查 -->
 		<dependency>
 			<groupId>tk.mybatis</groupId>
 			<artifactId>mapper-spring-boot-starter</artifactId>
@@ -83,7 +83,7 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
-		<!-- Swagger -->
+		<!-- Swagger       start-->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
@@ -95,7 +95,9 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.6.1</version>
 		</dependency>
-		<!-- ===============shiro 开始========================-->
+		<!-- Swagger       end               -->
+
+		<!-- ===============shiro start========================-->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-core</artifactId>
@@ -119,7 +121,7 @@
 			<artifactId>thymeleaf-extras-shiro</artifactId>
 			<version>1.2.1</version>
 		</dependency>
-		<!-- ===============shiro 结束========================-->
+		<!-- ===============shiro end========================-->
 
 	</dependencies>
 
