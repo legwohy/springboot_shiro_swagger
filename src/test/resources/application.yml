@@ -20,10 +20,10 @@ spring:
   datasource:
     name: druidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://116.62.146.185:3306/cash_cs
+    url: jdbc:mysql://116.62.146.185:3306/test_Blue
     username: root
     password: huoxinjihuatest
-
+   
 
     type: com.alibaba.druid.pool.DruidDataSource
     filters: stat

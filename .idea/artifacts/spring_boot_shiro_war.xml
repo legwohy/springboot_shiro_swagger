@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
   <artifact type="war" name="spring-boot-shiro:war">
     <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="spring-boot-shiro.war">
+    <root id="archive" name="spring-boot-shiro-1.5.9.RELEASE.war">
       <element id="artifact" artifact-name="spring-boot-shiro:war exploded" />
     </root>
   </artifact>
