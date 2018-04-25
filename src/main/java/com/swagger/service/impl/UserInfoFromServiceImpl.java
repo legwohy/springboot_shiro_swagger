@@ -4,8 +4,10 @@ import com.swagger.dao.UserInfoFromDAO;
 import com.swagger.entirty.UserInfoFrom;
 import com.swagger.service.UserInfoFromService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -18,7 +20,7 @@ public class UserInfoFromServiceImpl implements UserInfoFromService {
         return userInfoFromDAO.selectByPrimaryKey(id);
     }
 
-    public List<UserInfoFrom> findUserInfoFromList(UserInfoFrom userInfoFrom){
-        return userInfoFromDAO.select(userInfoFrom);
+    public List<UserInfoFrom> findUserInfoFromAll(){
+        return userInfoFromDAO.selectAll();
     }
 }

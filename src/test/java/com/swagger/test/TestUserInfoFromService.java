@@ -2,11 +2,15 @@ package com.swagger.test;
 
 import com.swagger.entirty.UserInfoFrom;
 import com.swagger.service.UserInfoFromService;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 
 /**
@@ -19,8 +23,9 @@ public class TestUserInfoFromService {
     @Autowired private UserInfoFromService userInfoFromService;
 
     @Test public void test1(){
-        UserInfoFrom userInfoFrom = userInfoFromService.findUserInfoFromByPrimaryKey(1);
-        System.out.println("测试:"+userInfoFrom.toString());
+        //UserInfoFrom userInfoFrom = userInfoFromService.findUserInfoFromByPrimaryKey(1);
+        List<UserInfoFrom> list = userInfoFromService.findUserInfoFromAll();
+       System.out.println("测试:"+list.size());
 
     }
 

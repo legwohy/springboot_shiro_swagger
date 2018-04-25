@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface UserInfoFromService {
     UserInfoFrom findUserInfoFromByPrimaryKey(int id);
-    List<UserInfoFrom> findUserInfoFromList(UserInfoFrom userInfoFrom);
+    List<UserInfoFrom> findUserInfoFromAll();
 }
