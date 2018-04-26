@@ -1,7 +1,7 @@
 package com.swagger.dao;
 
 import com.swagger.entirty.UserInfoFrom;
-import com.swagger.util.MyMapper;
+import com.util.MyMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

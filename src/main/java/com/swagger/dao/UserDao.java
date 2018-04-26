@@ -1,6 +1,8 @@
 package com.swagger.dao;
 
 import com.swagger.entirty.User;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.List;
 /**
  * 注解@Mapper 是springBoot整合Mybatis独有的，mybatis木有 相当于sqlMapperConfig
  */
-//@Component
+@Mapper
 public interface UserDao {
     List<HashMap<String,Object>> findUserH();
     HashMap<String,Object> findUserByIdH(HashMap<String, Object> params);

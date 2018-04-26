@@ -1,23 +1,52 @@
 <!DOCTYPE html>
 <!-- 必须指定thymeleaf命名空间-->
 <html xmlns="http://www.thymeleaf.org"
-      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
+      xmlns:th="http://www.thymeleaf.org"
+>
 
 <meta charset="UTF-8"/><!-- meta需封闭-->
 <head>
     <meta charset="UTF-8"/>
-    <title>login</title>
+    <title>主页</title>
+
+    <!-- 引入布局-->
+    <link rel="stylesheet" href="../static/css/layout-default-latest.css"/>
 </head>
 <body>
+<!-- 东南西北中布局-->
+<iframe name="content" class="ui-layout-center" src="<${pageContext.request.contextPath}/welcome" frameborder="0" scrolling="auto"></iframe>
+<div class="ui-layout-north">
+    欢迎<shiro:principal/><a href="${pageContext.request.contextPath}/logOut">点我注销</a>
+</div>
+<div class="ui-layout-west">
+    <table>
+        <h1>功能菜单</h1>
+        <tr th:each="permission,iterStat:${permissions}">
+            <a href="${permission.url}" target="content">${permission.name}</a>
+        </tr>
+    </table>
 
-<h1>欢迎${user.username }光临!请选择你的操作:</h1><br>
+</div>
+<!--<h1>欢迎${user.username }光临!请选择你的操作:</h1><br>
 <ul>
     <shiro:hasPermission name="add"><li>增加</li></shiro:hasPermission>
     <shiro:hasPermission name="delete"><li>删除</li></shiro:hasPermission>
     <shiro:hasPermission name="update"><li>修改</li></shiro:hasPermission>
     <shiro:hasPermission name="query"><li>查询</li></shiro:hasPermission>
-</ul>
-<a href="${pageContext.request.contextPath }/logOut">点我注销</a>
+</ul>-->
+
 </form>
 </body>
+
+<!-- 布局的css-->
+<script src="../static/JQuery_layout/jquery-1.11.0.min.js"></script>
+<script src="../static/JQuery_layout/jquery.layout-latest.min.js"></script>
+<script>
+    $(function () {
+        $(document).ready(function () {
+            $('body').layout({ applyDemoStyles: true });// 采用默认样式
+        });
+    });
+</script>
 </html>

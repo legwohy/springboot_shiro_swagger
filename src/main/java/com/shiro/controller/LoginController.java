@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,9 +29,15 @@ public class LoginController {
     @ApiImplicitParams({@ApiImplicitParam(name = "username",value = "用户名",dataType = "string",paramType = "query"),
                         @ApiImplicitParam(name = "password",value = "密码",dataType = "string",paramType = "query")})
     @PostMapping("/loginUser")
-    public ModelAndView loginUser(@RequestParam String username, @RequestParam String password, HttpSession session) {
+    public ModelAndView loginUser(
+            @RequestParam String username,
+            @RequestParam String password,
+            HttpSession session,
+            Model model
+    ) {
         ModelAndView mv = new ModelAndView("login");
         if(username == null){
+            model.addAttribute("error","用户名不能为空");
             return mv;
         }
         try {

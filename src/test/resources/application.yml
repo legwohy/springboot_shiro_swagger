@@ -21,12 +21,12 @@ spring:
   datasource:
     name: druidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    #url: jdbc:mysql://192.168.6.163:3306/shiro?useUnicode=true&CharacterEncoding=UTF-8
-    #username: cobra
-    #password: Z&Tc1234567890
-    url: jdbc:mysql://localhost:3306/shiro?useUnicode=true&CharacterEncoding=UTF-8
-    username: root
-    password: 123
+    url: jdbc:mysql://192.168.6.163:3306/shiro?useUnicode=true&CharacterEncoding=UTF-8
+    username: cobra
+    password: Z&Tc1234567890
+    #url: jdbc:mysql://localhost:3306/shiro?useUnicode=true&CharacterEncoding=UTF-8
+    #username: root
+    #password: 123
    
 
     type: com.alibaba.druid.pool.DruidDataSource
@@ -44,9 +44,10 @@ spring:
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
 
-#mybatis
+#mybatis 扫描mapper下的xml
 mybatis:
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath:dao/*.xml
+  type-handlers-package: org.mybatis.example.ExampleTypeHandler
 
 
 

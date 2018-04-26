@@ -1,20 +1,34 @@
 package com.shiro.service;
 
-import com.shiro.dao.BackUserDao;
 import com.shiro.entirty.BackUser;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 后台业务控制层
  */
-@Service
-public class BackUserService {
+public interface BackUserService {
 
-    @Autowired private BackUserDao userDao;
+    /** 按照登录名查询*/
+     BackUser findUserByLoginName(String userName);
 
-    public BackUser findUserByName(String userName){
-        return userDao.selectUserByName(userName);
-    }
+     /** 主键查询*/
+     BackUser findUserByPrimaryKey(int id);
+
+     /** 跟新用户*/
+     boolean updateUserByPrimaryKey(BackUser backUser);
+
+     /** 空字段不会跟新*/
+     boolean updateUserBySelective(BackUser backUser);
+
+     /** 删除*/
+     boolean deleteUserByPrimaryKey(Integer id);
+
+     /** 查询列表*/
+     List<BackUser> findUserList(BackUser backUser);
+
+     /** 统计用户*/
+     int findUserCount(BackUser backUser);
+
 
 }

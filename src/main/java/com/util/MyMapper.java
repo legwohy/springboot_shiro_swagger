@@ -1,4 +1,4 @@
-package com.swagger.util;
+package com.util;
 
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.MySqlMapper;

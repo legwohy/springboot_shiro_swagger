@@ -1,19 +1,30 @@
 package com.shiro.entirty;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 用户
+ * 系统用户
  */
+@Entity
+@Table(name = "sys_user")
 public class BackUser {
-    private Integer id;
-    private String userName;
-    private String password;
-    private Set<BackRole> roleSet = new HashSet<BackRole>();// 一对多
+    @Id @GeneratedValue(generator = "UUID") private Integer id;
+    @Column(name = "username") private String userName;
+    @Column private String password;
+    @Column private String salt;
+    @Column(name = "user_mobile") private String userMobile;
+    @Column(name = "organization_id") private Integer organizationId;
+    @Column(name = "locked") private Boolean locked;
 
-    public BackUser() {
-    }
+    @ManyToMany// 多对多
+    @JoinTable(
+            name = "ref_user_role",
+            joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "id")},// joinTable的主键
+            inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}
+    )
+    private Set<BackRole> roleSet;
 
     public Integer getId() {
         return id;
@@ -39,6 +50,38 @@ public class BackUser {
         this.password = password;
     }
 
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public String getUserMobile() {
+        return userMobile;
+    }
+
+    public void setUserMobile(String userMobile) {
+        this.userMobile = userMobile;
+    }
+
+    public Integer getOrganizationId() {
+        return organizationId;
+    }
+
+    public void setOrganizationId(Integer organizationId) {
+        this.organizationId = organizationId;
+    }
+
+    public Boolean getLocked() {
+        return locked;
+    }
+
+    public void setLocked(Boolean locked) {
+        this.locked = locked;
+    }
+
     public Set<BackRole> getRoleSet() {
         return roleSet;
     }
@@ -53,6 +96,10 @@ public class BackUser {
                 "id=" + id +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                ", userMobile='" + userMobile + '\'' +
+                ", organizationId=" + organizationId +
+                ", locked=" + locked +
                 ", roleSet=" + roleSet +
                 '}';
     }

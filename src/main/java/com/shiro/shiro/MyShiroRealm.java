@@ -1,6 +1,6 @@
 package com.shiro.shiro;
 
-import com.shiro.entirty.BackModule;
+import com.shiro.entirty.BackResource;
 import com.shiro.entirty.BackRole;
 import com.shiro.entirty.BackUser;
 import com.shiro.service.BackUserService;
@@ -32,7 +32,7 @@ public class MyShiroRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         UsernamePasswordToken utoken = (UsernamePasswordToken) token;// 获取用户插入的token
         String userName = utoken.getUsername();// 登录名
-        BackUser user = userService.findUserByName(userName);// 调用用户
+        BackUser user = userService.findUserByLoginName(userName);// 调用用户
 
         return new SimpleAuthenticationInfo(user,user.getPassword(),this.getClass().getName());
     }
@@ -56,9 +56,9 @@ public class MyShiroRealm extends AuthorizingRealm {
         if(roleSet.size() > 0){
             // 取资源(权限)
             for (BackRole role:roleSet){
-                Set<BackModule> moduleSet = role.getModuleSet();// 角色中取资源(权限)
-                for (BackModule module:moduleSet){
-                    permissions.add(module.getModuleName());
+                Set<BackResource> moduleSet = role.getResourceSet();// 角色中取资源(权限)
+                for (BackResource module:moduleSet){
+                    permissions.add(module.getPermission());
                 }
             }
         }

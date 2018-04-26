@@ -5,6 +5,7 @@ import com.swagger.entirty.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,11 +16,10 @@ import java.util.List;
  * 用户业务类
  * springBoot jdbcTemplate数据库
  */
-//@Service
+@Service
 public class UserService {
 
-    //@Autowired
-    private JdbcTemplate jdbcTemplate;// spring自带的jdbc模板
+    @Autowired private JdbcTemplate jdbcTemplate;// spring自带的jdbc模板
     @Autowired private UserDao userDao;
 
     /**

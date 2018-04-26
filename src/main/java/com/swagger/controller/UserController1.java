@@ -3,6 +3,7 @@ package com.swagger.controller;
 import com.swagger.entirty.User;
 import com.swagger.service.UserService;
 import io.swagger.annotations.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -11,10 +12,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 @Api(value = "用户管理",description = "用户操作")
-public class UserController {
+public class UserController1 {
 
-    //@Autowired
-    private UserService userService;
+    @Autowired private UserService userService;
 
     @PostMapping("/list")
     @ApiOperation(value = "获取用户列表",notes = "获取用户的完整信息")

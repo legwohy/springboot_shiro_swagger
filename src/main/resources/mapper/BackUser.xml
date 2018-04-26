@@ -1,7 +1,7 @@
 <!DOCTYPE mapper
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shiro.dao.BackUserDao" >
+<mapper namespace="com.shiro.dao.BackUserMapper" >
 
 	<resultMap type="com.shiro.entirty.BackUser" id="userMap">
 		<id property="id" column="userId"/>
@@ -12,7 +12,7 @@
 			<id property="id" column="roleId"/>
 			<result property="roleName" column="roleName"/>
 			<!-- 角色里面包含资源-->
-			<collection property="moduleSet" ofType="com.shiro.entirty.BackModule">
+			<collection property="moduleSet" ofType="com.shiro.entirty.BackResource">
 				<id property="id" column="moduleId"/>
 				<result property="moduleName" column="moduleName"/>
 			</collection>
