@@ -21,7 +21,7 @@
 		<version>1.5.9.RELEASE</version>
 	</parent>
 	<dependencies>
-		<!-- Spring Boot web依赖 -->
+		<!-- Spring Boot springmvc 依赖 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -122,6 +122,14 @@
 			<version>1.2.1</version>
 		</dependency>
 		<!-- ===============shiro end========================-->
+
+		<!-- https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl -->
+		<dependency>
+			<groupId>javax.servlet.jsp.jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
 
 	</dependencies>
 

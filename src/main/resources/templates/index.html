@@ -5,7 +5,6 @@
       xmlns:th="http://www.thymeleaf.org"
 >
 
-<meta charset="UTF-8"/><!-- meta需封闭-->
 <head>
     <meta charset="UTF-8"/>
     <title>主页</title>
@@ -14,29 +13,33 @@
     <link rel="stylesheet" href="../static/css/layout-default-latest.css"/>
 </head>
 <body>
+
 <!-- 东南西北中布局-->
-<iframe name="content" class="ui-layout-center" src="<${pageContext.request.contextPath}/welcome" frameborder="0" scrolling="auto"></iframe>
+
+<iframe name="content" class="ui-layout-center"  frameborder="0" scrolling="auto"/>
 <div class="ui-layout-north">
-    欢迎<shiro:principal/><a href="${pageContext.request.contextPath}/logOut">点我注销</a>
+
+    <tr th:each="permission:${northPermissions}">
+        <a th:href="${permission.url}">
+            <span th:text="${permission.name}"/>
+        </a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+    </tr>
+
 </div>
+
 <div class="ui-layout-west">
-    <table>
-        <h1>功能菜单</h1>
-        <tr th:each="permission,iterStat:${permissions}">
-            <a href="${permission.url}" target="content">${permission.name}</a>
-        </tr>
-    </table>
+
+    <tr th:each="permission:${westPermissions}">
+        <a th:href="${permission.url}" target="content">
+            <span th:text="${permission.name}"/>
+        </a>
+        <br/>
+
+    </tr>
 
 </div>
-<!--<h1>欢迎${user.username }光临!请选择你的操作:</h1><br>
-<ul>
-    <shiro:hasPermission name="add"><li>增加</li></shiro:hasPermission>
-    <shiro:hasPermission name="delete"><li>删除</li></shiro:hasPermission>
-    <shiro:hasPermission name="update"><li>修改</li></shiro:hasPermission>
-    <shiro:hasPermission name="query"><li>查询</li></shiro:hasPermission>
-</ul>-->
 
-</form>
 </body>
 
 <!-- 布局的css-->

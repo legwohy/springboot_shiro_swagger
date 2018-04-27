@@ -1,0 +1,22 @@
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shiro.dao.ResourceDao" >
+
+	<!-- 资源查询角色-->
+	<select id="selectResourcesByRole" resultType="Resource" parameterType="Role">
+		SELECT res.*
+		FROM sys_resource AS res
+		LEFT JOIN ref_role_resource rr ON res.id=rr.resource_id
+		LEFT JOIN sys_role AS r ON r.id=rr.role_id
+		<where>
+			<if test="id != null">
+				r.id=#{id}
+			</if>
+			<if test="role != null">
+				r.role=#{role}
+			</if>
+		</where>
+	</select>
+
+</mapper>

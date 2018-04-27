@@ -119,5 +119,6 @@
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-ehcache:1.2.5" level="project" />
     <orderEntry type="library" name="Maven: net.sf.ehcache:ehcache-core:2.5.0" level="project" />
     <orderEntry type="library" name="Maven: com.github.theborakompanioni:thymeleaf-extras-shiro:1.2.1" level="project" />
+    <orderEntry type="library" name="Maven: javax.servlet.jsp.jstl:jstl:1.2" level="project" />
   </component>
 </module>
