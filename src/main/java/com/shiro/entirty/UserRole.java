@@ -2,20 +2,17 @@ package com.shiro.entirty;
 
 import javax.persistence.*;
 
-
 /**
- * 角色资源关联表
+ * 用户角色
  */
 @Entity
-@Table(name = "ref_role_resource")
-public class RefRoleResource {
+@Table(name = "ref_user_role")
+public class UserRole {
     @Id @GeneratedValue(generator = "UUID") private Integer id;
-    private Integer roleId;
-    private Integer resourceId;
+    @Column(name = "user_id") private Integer userId;
+    @Column(name = "role_id") private Integer roleId;
 
-
-
-    public RefRoleResource() {
+    public UserRole() {
     }
 
     public Integer getId() {
@@ -26,6 +23,14 @@ public class RefRoleResource {
         this.id = id;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     public Integer getRoleId() {
         return roleId;
     }
@@ -34,21 +39,14 @@ public class RefRoleResource {
         this.roleId = roleId;
     }
 
-    public Integer getResourceId() {
-        return resourceId;
-    }
-
-    public void setResourceId(Integer resourceId) {
-        this.resourceId = resourceId;
-    }
 
 
     @Override
     public String toString() {
-        return "RefRoleResource{" +
+        return "UserRole{" +
                 "id=" + id +
+                ", userId=" + userId +
                 ", roleId=" + roleId +
-                ", resourceId=" + resourceId +
                 '}';
     }
 }

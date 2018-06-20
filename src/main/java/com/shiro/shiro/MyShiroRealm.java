@@ -3,10 +3,7 @@ package com.shiro.shiro;
 import com.shiro.entirty.Resource;
 import com.shiro.entirty.Role;
 import com.shiro.entirty.User;
-import com.shiro.service.ResourceService;
-import com.shiro.service.RoleService;
-import com.shiro.service.UserService;
-import org.apache.ibatis.type.Alias;
+import com.shiro.service.BackUserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -23,9 +20,7 @@ import java.util.Set;
  * 根据用户名去数据库的查询,并且将用户信息放入shiro中,供第二个类调用
  */
 public class MyShiroRealm extends AuthorizingRealm {
-    @Autowired private UserService userService;
-    @Autowired private RoleService roleService;
-    @Autowired private ResourceService resourceService;
+    @Autowired private BackUserService userService;
 
 
     /**
@@ -57,14 +52,13 @@ public class MyShiroRealm extends AuthorizingRealm {
         // 获取session中的用户 集合迭代
         User user = (User) principal.fromRealm(this.getClass().getName()).iterator().next();
         List<String> permissions = new ArrayList<String>();// 存取资源(权限)
-
-        List<Role> roles = roleService.findRolesByUser(user);// 根据用户查询角色
-        if(roles.size() > 0){
+        Set<Role> roleSet = user.getRoleSet();// 用户中取得资源(权限)
+        if(roleSet.size() > 0){
             // 取资源(权限)
-            for (Role role:roles){
-                List<Resource> resources = resourceService.findResourcesByRole(role);
-                for (Resource res:resources){
-                    permissions.add(res.getPermission());
+            for (Role role:roleSet){
+                Set<Resource> moduleSet = role.getResourceSet();// 角色中取资源(权限)
+                for (Resource module:moduleSet){
+                    permissions.add(module.getPermission());
                 }
             }
         }

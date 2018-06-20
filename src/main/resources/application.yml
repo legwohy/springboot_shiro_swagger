@@ -9,24 +9,24 @@ server:
 #spring
 spring:
   #thymeleaf模板
-  #thymeleaf:
-    #cache: false
-    #prefix: classpath:/templates/
-    #suffix: .html
-    #encoding: UTF-8
-    #content-type: text/html
-    #mode: HTML5
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    content-type: text/html
+    mode: HTML5
 
   #druid数据源
   datasource:
     name: druidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.6.163:3306/shiro?useUnicode=true&CharacterEncoding=UTF-8&useSSL=false
-    username: cobra
-    password: Z&Tc1234567890
-    #url: jdbc:mysql://localhost:3306/shiro?useUnicode=true&CharacterEncoding=UTF-8&useSSL=false
-    #username: root
-    #password: 123
+    #url: jdbc:mysql://192.168.6.163:3306/shiro?useUnicode=true&CharacterEncoding=UTF-8
+    #username: cobra
+    #password: Z&Tc1234567890
+    url: jdbc:mysql://localhost:3306/shiro?useUnicode=true&CharacterEncoding=UTF-8
+    username: root
+    password: 123
    
 
     type: com.alibaba.druid.pool.DruidDataSource
@@ -43,17 +43,11 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
-  mvc:
-    view:
-      prefix: classpath:/jsp/
-      suffix: .jsp
 
-# mybaits 配置文件
+#mybatis 扫描mapper下的xml
 mybatis:
-  #扫描mapper下的xml
-  mapper-locations: classpath:mapper/*.xml
-  # 开启表别名 方可使用@Alias 注解
-  type-aliases-package: com.shiro.entirty
+  mapper-locations: classpath:dao/*.xml
+  type-handlers-package: org.mybatis.example.ExampleTypeHandler
 
 
 

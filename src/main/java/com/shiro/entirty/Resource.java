@@ -1,7 +1,5 @@
 package com.shiro.entirty;
 
-import org.apache.ibatis.type.Alias;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -10,19 +8,23 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "sys_resource")
-@Alias("Resource")
 public class Resource {
     @Id @GeneratedValue(generator = "UUID") private Integer id;
+    @Column private String permission;
+    @Column private Integer available;
+    @Column private String description;
+    @Column(name = "parent_id") private Integer parentId;
 
-    private String url;// url
-    private String name;// 资源名称
-    private String description;
-    private Integer parentId;
-    private String permission;
-    private Integer available;
-
-
-
+    @ManyToMany(
+            fetch = FetchType.LAZY,// 默认懒加载 用于查找同步
+            cascade = {CascadeType.ALL}// 增删改同步
+    )
+    @JoinTable(
+            name = "ref_role_resource",
+            joinColumns = {@JoinColumn(name = "resource_id",referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}
+    )
+    private Set<Role> roleSet;
     public Resource() {
     }
 
@@ -66,32 +68,22 @@ public class Resource {
         this.parentId = parentId;
     }
 
-    public String getUrl() {
-        return url;
+    public Set<Role> getRoleSet() {
+        return roleSet;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setRoleSet(Set<Role> roleSet) {
+        this.roleSet = roleSet;
     }
 
     @Override
     public String toString() {
-        return "Resource{" +
+        return "BackResourceMapper{" +
                 "id=" + id +
-                ", url='" + url + '\'' +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", parentId=" + parentId +
                 ", permission='" + permission + '\'' +
                 ", available=" + available +
+                ", description='" + description + '\'' +
+                ", parentId=" + parentId +
                 '}';
     }
 }

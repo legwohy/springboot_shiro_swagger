@@ -3,17 +3,17 @@ package com.shiro.entirty;
 import javax.persistence.*;
 
 /**
- * 关联表
+ * 组织架构
  */
 @Entity
-@Table(name = "sys_organization_user")
-public class RefOrganizationUser {
+@Table(name = "sys_organization")
+public class OrganizationUser {
     @Id @GeneratedValue(generator = "UUID") private Integer id;
     @Column(name = "user_id") private Integer user_id;
     @Column(name = "organization_id") private Integer organizationId;
 
 
-    public RefOrganizationUser() {
+    public OrganizationUser() {
     }
 
     public Integer getId() {
@@ -42,7 +42,7 @@ public class RefOrganizationUser {
 
     @Override
     public String toString() {
-        return "RefOrganizationUser{" +
+        return "OrganizationUser{" +
                 "id=" + id +
                 ", user_id=" + user_id +
                 ", organizationId=" + organizationId +

@@ -85,6 +85,7 @@
           <element id="library" level="project" name="Maven: net.sf.ehcache:ehcache-core:2.5.0" />
           <element id="library" level="project" name="Maven: com.github.theborakompanioni:thymeleaf-extras-shiro:1.2.1" />
           <element id="library" level="project" name="Maven: javax.servlet.jsp.jstl:jstl:1.2" />
+          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.16.10" />
         </element>
       </element>
       <element id="directory" name="META-INF">

@@ -1,22 +1,29 @@
 package com.shiro.entirty;
 
-
-import org.apache.ibatis.type.Alias;
-
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * 组织架构
  */
 @Entity
 @Table(name = "sys_organization")
-@Alias("Organization")
 public class Organization {
     @Id @GeneratedValue(generator = "UUID") private Integer id;
-    private String name;
-    private Integer parentId;
-    private Integer available;
+    @Column private String name;
+    @Column(name = "parent_id") private Integer parentId;
+    @Column private Integer available;
 
+    @OneToMany(
+            cascade = {CascadeType.ALL},
+            fetch = FetchType.LAZY
+    )
+    @JoinTable(
+            name = "ref_organization_user",
+            joinColumns = {@JoinColumn(name = "organization_id",referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "id")}
+    )
+    private Set<User> userSet;
 
     public Organization() {
     }
@@ -53,6 +60,13 @@ public class Organization {
         this.available = available;
     }
 
+    public Set<User> getUserSet() {
+        return userSet;
+    }
+
+    public void setUserSet(Set<User> userSet) {
+        this.userSet = userSet;
+    }
 
     @Override
     public String toString() {
@@ -61,6 +75,7 @@ public class Organization {
                 ", name='" + name + '\'' +
                 ", parentId=" + parentId +
                 ", available=" + available +
+                ", userSet=" + userSet +
                 '}';
     }
 }
